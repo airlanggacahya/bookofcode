@@ -16,6 +16,42 @@ TODO
 ## New Line Ending
 TODO
 
+## Switch Case
+Prefer switch case instead of if for multiple path. Switch is easier to read than nested and deep if. Please be aware that you need to put "break" statement between different code path or the code will fallthrought.
+
+### Do
+```js
+switch (code) {
+case "golang":
+    // do something
+    // don't forget to break here, or the code will fallthrought
+    break;
+case "js":
+case "javascript":
+    // this code will execute whenever code is "js" or "javascript"
+    break;
+case "css":
+    // do something
+    break;
+default:
+    // anything else
+    break;
+}
+```
+
+### Avoid
+```js
+if (code === "golang") {
+    // do something
+} elseif(code === "js" || code === "javascript) {
+    // do something
+} elseif(code === "css") {
+    // do something
+} else {
+    // do something
+}
+```
+
 # Knockout
 
 ## KendoDatePicker
