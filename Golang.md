@@ -24,7 +24,11 @@ Even better, use golang plugin for your favourite text editor for automatic form
 Do Not Use Global Variable. It's recommeded to pass variable using Context or similar technique.
 
 ## Error Handling
-Please return error handling on your function. Delegate error handling to your caller. DO NOT IGNORE ERROR. In most case, your caller need to detect error and react accordingly.
+
+### Ignoring Error
+For helper function (eg. ParsingText, ParsingDate, WritingText). It's recommended to delegate error handling to your caller or handle it by yourself and then return new error / other status.
+
+DO NOT IGNORE/SWALLOW ERROR. In most case, your caller need to detect error and react accordingly. If the caller doesn't care about error, it can be ignored on the caller level/
 
 Use error as last variable on your return value.
 
