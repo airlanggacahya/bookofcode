@@ -25,11 +25,12 @@ Do Not Use Global Variable. It's recommeded to pass variable using Context or si
 
 ## Error Handling
 
-### Library
-Please return error handling on your function. Delegate error handling to your caller. DO NOT IGNORE ERROR. In most case, your caller need to detect error and react accordingly.
+### Library / Helper function
+For library / helper function (eg. ParsingText, ParsingDate, WritingText). It's recommended to delegate error handling to your caller or handle it by yourself and then return new error / other status.
 
-Use error as last variable on your return value.
+DO NOT IGNORE/SWALLOW ERROR. In most case, your caller need to detect error and react accordingly. If the caller doesn't care about error, it can be ignored on the caller site.
 
+Use error as last variable on your multiple return value.
 ```go
 func ParseSomething(val string) (type string, value int, error) {
     // call function that return error
@@ -44,15 +45,14 @@ func ParseSomething(val string) (type string, value int, error) {
 ```
 
 ### Application
-If you are wrapping library error, then create your own Error variable on global level and then use them.
-
+If you are wrapping library error, then create your own Error variable on global level and then use them as an error return value.
 ```go
 var ErrorSaveFailed = errors.New("Error Save Failed")
 
 func SaveFile(val string) error {
     err := OperationMayError(val)
     if err != nil {
-        return ErrorSaveFailed
+        return ErrorSaveFailed // We wrap error as custom error
     }
 
     return nil
@@ -60,7 +60,6 @@ func SaveFile(val string) error {
 ```
 
 On the caller you can compare with the var name if you need to respond based on the error code. Otherwise, handle like the usual.
-
 ```go
 func SaveFileCaller(val string) error {
     err := SaveFile(val)

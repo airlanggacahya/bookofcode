@@ -43,7 +43,7 @@ default:
 ```js
 if (code === "golang") {
     // do something
-} elseif(code === "js" || code === "javascript) {
+} elseif(code === "js" || code === "javascript") {
     // do something
 } elseif(code === "css") {
     // do something
